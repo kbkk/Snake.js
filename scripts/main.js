@@ -16,6 +16,7 @@ let velocityX = 0;
 let velocityY = 0;
 const trail = [];
 const fruits = [];
+const specialFruits = [];
 let snakeTail = 5;
 
 function getRandomTileCoord() {
@@ -78,6 +79,13 @@ function drawFruits()
     ctx.fillStyle = fruit.color;
     ctx.fillRect(fruit.x * gridSize, fruit.y * gridSize, gridSize - 2, gridSize - 2);
   }
+  for(let i = 0; i < specialFruits.length; i++)
+  {
+    const specialFruit = specialFruits[i];
+
+    ctx.fillStyle = specialFruit.color;
+    ctx.fillRect(specialFruit.x * gridSize, specialFruit.y * gridSize, gridSize - 2, gridSize - 2);
+  }
 }
 
 function handleSnakeEat()
@@ -98,6 +106,16 @@ function handleSnakeEat()
         spawnSpecialFruit();
     }
   }
+  for(let i = 0; i < specialFruits.length; i++)
+  {
+    const specialFruit = specialFruits[i];
+
+    if(snakeX === specialFruit.x && snakeY === specialFruit.y)
+    {
+      snakeTail += specialFruit.points;
+      scoreBox.innerHTML = snakeTail - 5;
+      specialFruits.splice(i, 1);
+  }
 }
 
 function spawnFruit()
@@ -107,7 +125,7 @@ function spawnFruit()
 
 function spawnSpecialFruit()
 {
-  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 3, color: specialFoodColor});
+  specialFruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 3, color: specialFoodColor});
 }
 
 function onGameOver() {
@@ -163,4 +181,3 @@ function onGameFrame() {
   spawnFruit();
   setInterval(onGameFrame, 100);
 }());
-
