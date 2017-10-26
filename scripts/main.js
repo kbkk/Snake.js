@@ -137,9 +137,9 @@ function onGameOver() {
 function drawSnake() {
   snakeX += velocityX;
   snakeY += velocityY;
-
   oldX = velocityX;
   oldY = velocityY;
+  
 
   if (snakeX < 0) {
     snakeX = tileCount - 1;
