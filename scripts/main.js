@@ -14,6 +14,9 @@ const specialFoodColor = "#53d724";
 let tileCount = playground.width / gridSize;
 let velocityX = 0;
 let velocityY = 0;
+const oldX = 0;
+const oldY = 0;
+
 const trail = [];
 const fruits = [];
 const specialFruits = [];
@@ -36,8 +39,6 @@ function drawPlayground() {
 }
 
 function moveSnake(ev) {
-  const oldX = velocityX;
-  const oldY = velocityY;
 
   switch (ev.keyCode) {
     case 37:
@@ -136,6 +137,9 @@ function onGameOver() {
 function drawSnake() {
   snakeX += velocityX;
   snakeY += velocityY;
+
+  oldX = velocityX;
+  oldY = velocityY;
 
   if (snakeX < 0) {
     snakeX = tileCount - 1;
