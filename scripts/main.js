@@ -14,8 +14,8 @@ const specialFoodColor = "#53d724";
 let tileCount = playground.width / gridSize;
 let velocityX = 0;
 let velocityY = 0;
-const oldX = 0;
-const oldY = 0;
+let oldX = 0;
+let oldY = 0;
 
 const trail = [];
 const fruits = [];
