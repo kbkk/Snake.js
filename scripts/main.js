@@ -100,10 +100,10 @@ function handleSnakeEat()
       scoreBox.innerHTML = snakeTail - 5;
       fruits.splice(i, 1);
 
-      spawnFruit();
-
       if(getRandomInt(1, 10) === 10)
         spawnSpecialFruit();
+      else
+        spawnFruit();
     }
   }
   for(let i = 0; i < specialFruits.length; i++)
