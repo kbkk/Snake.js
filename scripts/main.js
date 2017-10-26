@@ -38,23 +38,27 @@ function moveSnake(ev) {
   const oldX = velocityX;
   const oldY = velocityY;
 
-  switch (ev.keyCode) {
-    case 37:
+  switch (ev.key) {
+    case 'a':
+    case 'ArrowLeft':
       velocityX = -1;
       velocityY = 0;
       break;
-    case 38:
-      //move up
+
+    case 'w':
+    case 'ArrowUp':
       velocityX = 0;
       velocityY = -1;
       break;
-    case 39:
-      //move right
+
+    case 'd':
+    case 'ArrowRight':
       velocityX = 1;
       velocityY = 0;
       break;
-    case 40:
-      //move down
+
+    case 's':
+    case 'ArrowDown':
       velocityX = 0;
       velocityY = 1;
       break;
