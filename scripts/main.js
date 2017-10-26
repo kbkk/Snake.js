@@ -116,6 +116,7 @@ function handleSnakeEat()
       snakeTail += specialFruit.points;
       scoreBox.innerHTML = snakeTail - 5;
       specialFruits.splice(i, 1);
+    }
   }
 }
 
