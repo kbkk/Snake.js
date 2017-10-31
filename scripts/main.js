@@ -102,13 +102,13 @@ function insideSnake(x, y) {
 }
 
 function getNonSnakeCoord() {
-  let x = getRandomTileCoord();
-  let y = getRandomTileCoord();
+  let x, y;
 
-  while (insideSnake(x, y)) {
+  do {
     x = getRandomTileCoord();
     y = getRandomTileCoord();
   }
+  while (insideSnake(x, y));
 
   return {x: x, y: y};
 }
