@@ -63,16 +63,14 @@ function moveSnake(ev) {
   // don't allow moving in the opposite direction
   // as it would end with suicide
   if ((velocityX !== 0 && oldX !== 0 && velocityX !== oldX)
-      || (velocityY !== 0 && oldY !== 0 && velocityY !== oldY)) {
+    || (velocityY !== 0 && oldY !== 0 && velocityY !== oldY)) {
     velocityX = oldX;
     velocityY = oldY;
   }
 }
 
-function drawFruits()
-{
-  for(let i = 0; i < fruits.length; i++)
-  {
+function drawFruits() {
+  for (let i = 0; i < fruits.length; i++) {
     const fruit = fruits[i];
 
     ctx.fillStyle = fruit.color;
@@ -80,19 +78,16 @@ function drawFruits()
   }
 }
 
-function handleSnakeEat()
-{
-  for(let i = 0; i < fruits.length; i++)
-  {
+function handleSnakeEat() {
+  for (let i = 0; i < fruits.length; i++) {
     const fruit = fruits[i];
 
-    if(snakeX === fruit.x && snakeY === fruit.y)
-    {
+    if (snakeX === fruit.x && snakeY === fruit.y) {
       snakeTail += fruit.points;
       scoreBox.innerHTML = snakeTail - 5;
       fruits.splice(i, 1);
 
-      if(getRandomInt(1, 10) === 10)
+      if (getRandomInt(1, 10) === 10)
         spawnSpecialFruit();
       else
         spawnFruit();
@@ -100,33 +95,30 @@ function handleSnakeEat()
   }
 }
 
-function insideSnake(x, y)
-{
-  for (let i=0; i<trail.length; i++)
-    if (trail[i].x==x && trail[i].y==y) return true;
+function insideSnake(x, y) {
+  for (let i = 0; i < trail.length; i++)
+    if (trail[i].x === x && trail[i].y === y) return true;
   return false;
 }
 
-function getNonSnakeCoord()
-{
-  x = getRandomTileCoord();
-  y = getRandomTileCoord();
-  while (insideSnake(x,y))
-  {
+function getNonSnakeCoord() {
+  let x = getRandomTileCoord();
+  let y = getRandomTileCoord();
+
+  while (insideSnake(x, y)) {
     x = getRandomTileCoord();
     y = getRandomTileCoord();
   }
-  return {x: x,y: y};
+
+  return {x: x, y: y};
 }
 
-function spawnFruit()
-{
+function spawnFruit() {
   const coord = getNonSnakeCoord();
   fruits.push({x: coord.x, y: coord.y, points: 1, color: foodColor});
 }
 
-function spawnSpecialFruit()
-{
+function spawnSpecialFruit() {
   const coord = getNonSnakeCoord();
   fruits.push({x: coord.x, y: coord.y, points: 3, color: specialFoodColor});
 }
@@ -180,7 +172,7 @@ function onGameFrame() {
   handleSnakeEat();
 }
 
-(function onGameInit(){
+(function onGameInit() {
   spawnFruit();
   setInterval(onGameFrame, 100);
 }());
