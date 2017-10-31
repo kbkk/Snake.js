@@ -100,14 +100,35 @@ function handleSnakeEat()
   }
 }
 
+function insideSnake(x, y)
+{
+  for (let i=0; i<trail.length; i++)
+    if (trail[i].x==x && trail[i].y==y) return true;
+  return false;
+}
+
+function getNonSnakeCoord()
+{
+  x = getRandomTileCoord();
+  y = getRandomTileCoord();
+  while (insideSnake(x,y))
+  {
+    x = getRandomTileCoord();
+    y = getRandomTileCoord();
+  }
+  return {x: x,y: y};
+}
+
 function spawnFruit()
 {
-  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 1, color: foodColor});
+  const coord = getNonSnakeCoord();
+  fruits.push({x: coord.x, y: coord.y, points: 1, color: foodColor});
 }
 
 function spawnSpecialFruit()
 {
-  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 3, color: specialFoodColor});
+  const coord = getNonSnakeCoord();
+  fruits.push({x: coord.x, y: coord.y, points: 3, color: specialFoodColor});
 }
 
 function onGameOver() {
