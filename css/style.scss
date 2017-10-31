@@ -22,7 +22,7 @@ $canvasSize: 500px;
     margin-left: 20px;
     height: $canvasSize;
     width: $canvasSize;
-    text-align: center;
+    text-align: left;
     background-color: #eee;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -41,16 +41,22 @@ $canvasSize: 500px;
       @include border-radius;
       font-family: 'Pangolin', cursive;
     }
+    .score-container{
+      width: 60%;
+      margin: 0 auto;
+      text-align: center;
+      .score-box
+      {
+        font-size:3rem;
+        color:#990033;
+        &.animated{
+          animation: 0.5s 1 normal grow;
+          transition: all 500ms cubic-bezier(0.245, 1.650, 1.000, 0.980);
+        }
+      }
 
-    .score-box
-    {
-      font-size:3rem;
-      color:#990033;
     }
-    .animated{
-      animation: 0.5s 1 normal grow;
-      transition: all 500ms cubic-bezier(0.245, 1.650, 1.000, 0.980);
-    }
+
   }
 }
 footer
