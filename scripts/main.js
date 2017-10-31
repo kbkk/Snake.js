@@ -2,7 +2,7 @@ const playground = document.querySelector('canvas');
 const ctx = playground.getContext('2d');
 const scoreBox = document.querySelector('#scoreBox');
 document.addEventListener("keydown", moveSnake);
-
+scoreBox.addEventListener("animationend", endAnimation, false);
 playground.width = 500;
 playground.height = 500;
 
@@ -85,6 +85,9 @@ function handleSnakeEat() {
     if (snakeX === fruit.x && snakeY === fruit.y) {
       snakeTail += fruit.points;
       scoreBox.innerHTML = snakeTail - 5;
+      scoreBox.classList.add("animated");
+
+
       fruits.splice(i, 1);
 
       if (getRandomInt(1, 10) === 10)
@@ -165,7 +168,10 @@ function drawSnake() {
     trail.shift();
   }
 }
-
+function endAnimation(){
+  console.log("end animation plssss");
+  scoreBox.classList.remove("animated");
+}
 function onGameFrame() {
   drawSnake();
   drawFruits();
@@ -176,4 +182,3 @@ function onGameFrame() {
   spawnFruit();
   setInterval(onGameFrame, 100);
 }());
-
