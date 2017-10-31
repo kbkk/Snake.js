@@ -22,6 +22,23 @@ function getRandomTileCoord() {
   return Math.floor(Math.random() * tileCount);
 }
 
+function isPointFree(x, y) {
+  for (let i = 0; i < trail.length; i++) {
+    const {trailX, trailY} = trail[i]
+    if (trailX == x && trailY == y) {
+      return false
+    }
+  }
+  for (var i = 0; i < fruits.length; i++) {
+    const {fruitX, fruitY} = trail[i]
+    if (fruitX == x &&  fruitY == y) {
+      return false
+    }
+  }
+  
+  return true
+}
+
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
 
@@ -102,12 +119,26 @@ function handleSnakeEat()
 
 function spawnFruit()
 {
-  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 1, color: foodColor});
+  while (true) {
+    let x = getRandomTileCoord()
+    let y = getRandomTileCoord()
+    if (isPointFree(x, y)) {
+      fruits.push({x: x, y: y, points: 1, color: foodColor});
+      return
+    }
+  }
 }
 
 function spawnSpecialFruit()
 {
-  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 3, color: specialFoodColor});
+    while (true) {
+    let x = getRandomTileCoord()
+    let y = getRandomTileCoord()
+    if (isPointFree(x, y)) {
+      fruits.push({x: x, y: y, points: 3, color: specialFoodColor});
+      return
+    }
+  }
 }
 
 function onGameOver() {
