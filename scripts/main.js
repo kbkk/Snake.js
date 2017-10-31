@@ -17,6 +17,7 @@ let velocityY = 0;
 const trail = [];
 const fruits = [];
 let snakeTail = 5;
+let oldX = 0, oldY = 0;
 
 function getRandomTileCoord() {
   return Math.floor(Math.random() * tileCount);
@@ -35,8 +36,6 @@ function drawPlayground() {
 }
 
 function moveSnake(ev) {
-  const oldX = velocityX;
-  const oldY = velocityY;
 
   switch (ev.keyCode) {
     case 37:
@@ -132,6 +131,9 @@ function onGameOver() {
 }
 
 function drawSnake() {
+  oldY = velocityY;
+  oldX = velocityX;
+
   snakeX += velocityX;
   snakeY += velocityY;
 
